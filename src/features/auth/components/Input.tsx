@@ -3,8 +3,6 @@ import React from 'react';
 interface InputProps {
   label: string;
   type: string;
-  name: string;
-  value: string;
   placeholder: string;
   icon?: React.ReactNode;
   button?: {
@@ -12,19 +10,11 @@ interface InputProps {
     onClick: () => void;
     element: React.ReactNode;
   };
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+
+  error?: string;
 }
 
-const Input: React.FC<InputProps> = ({
-  label,
-  type,
-  name,
-  value,
-  placeholder,
-  icon,
-  button,
-  onChange
-}) => {
+const Input = ({ label, type, placeholder, icon, button, error, ...props }: InputProps) => {
   return (
     <div>
       <label className="block text-sm font-semibold text-gray-700 mb-2">{label}</label>
@@ -32,11 +22,11 @@ const Input: React.FC<InputProps> = ({
         {icon}
         <input
           type={type}
-          name={name}
-          value={value}
-          onChange={onChange}
+          {...props}
           placeholder={placeholder}
-          className="w-full pl-12 pr-12 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none transition"
+          className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:outline-none transition ${
+            error ? 'border-red-500' : 'border-gray-200 focus:border-purple-500'
+          }`}
         />
         {button && (
           <button
@@ -48,6 +38,7 @@ const Input: React.FC<InputProps> = ({
           </button>
         )}
       </div>
+      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
 };

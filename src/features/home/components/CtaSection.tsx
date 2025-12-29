@@ -1,6 +1,6 @@
 import { Sparkles } from 'lucide-react';
 
-const CtaSection: React.FC = () => {
+const CtaSection = () => {
   return (
     <>
       <div className="bg-linear-to-r from-purple-600 to-pink-600 rounded-3xl p-12 text-center text-white">

@@ -1,6 +1,6 @@
 import { Heart, MessageCircle, Users } from 'lucide-react';
 
-const Features: React.FC = () => {
+const Features = () => {
   return (
     <>
       <div className="grid md:grid-cols-3 gap-8 mb-16">

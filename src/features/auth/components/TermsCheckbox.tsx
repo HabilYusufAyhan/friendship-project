@@ -1,4 +1,4 @@
-const TermsCheckbox: React.FC = () => {
+const TermsCheckbox = () => {
   return (
     <label className="flex items-start gap-2 cursor-pointer">
       <input type="checkbox" className="w-4 h-4 mt-1 text-purple-600 rounded" />

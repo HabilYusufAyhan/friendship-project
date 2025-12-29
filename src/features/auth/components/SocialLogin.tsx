@@ -1,4 +1,4 @@
-const SocialLogin: React.FC = () => {
+const SocialLogin = () => {
   return (
     <div className="mt-8">
       <div className="relative">

@@ -6,7 +6,7 @@ interface BrandingProps {
 
 const Branding: React.FC<BrandingProps> = ({ isLogin }) => {
   return (
-    <div className="bg-gradient-to-br from-purple-600 to-pink-600 p-12 md:w-2/5 flex flex-col justify-center text-white">
+    <div className="bg-linear-to-br from-purple-600 to-pink-600 p-12 md:w-2/5 flex flex-col justify-center text-white">
       <div className="flex items-center gap-3 mb-8">
         <Users className="w-10 h-10" />
         <h1 className="text-3xl font-bold">ConnectMe</h1>

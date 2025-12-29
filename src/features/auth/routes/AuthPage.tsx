@@ -1,4 +1,6 @@
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
+import { useForm } from 'react-hook-form';
 
 import BackButton from '../components/BackButton';
 import Branding from '../components/Branding';
@@ -9,38 +11,47 @@ import SocialLogin from '../components/SocialLogin';
 import SubmitButton from '../components/SubmitButton';
 import TabButtons from '../components/TabButtons';
 import TermsCheckbox from '../components/TermsCheckbox';
+import { createAuthSchema } from '../schemas/authSchema';
 import { useAuthStore } from '../store/useAuthStore';
 
+interface AuthFormData {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
 function AuthPage() {
-  const { isLogin, setIsLogin, formData, setFormData, showPassword, setShowPassword } =
-    useAuthStore();
+  const { isLogin, setIsLogin, showPassword, setShowPassword } = useAuthStore();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    mode: 'onSubmit',
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
 
-  const handleSubmit = () => {
-    if (isLogin) {
-      console.log('Login:', { email: formData.email, password: formData.password });
-      alert('Giriş başarılı! (Demo)');
-    } else {
-      console.log('Signup:', formData);
-      alert('Kayıt başarılı! (Demo)');
-    }
+    resolver: zodResolver(createAuthSchema())
+  });
+
+  const submit = (data: AuthFormData) => {
+    console.log('Form Data:', data);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-linear-to-br from-purple-50 via-pink-50 to-blue-50 flex items-center justify-center p-6">
       <BackButton />
 
       <div className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row">
         <Branding isLogin={isLogin} />
 
         <div className="p-12 md:w-3/5">
-          <div className="max-w-md mx-auto">
+          <form onSubmit={handleSubmit(submit)} className="max-w-md mx-auto">
             <TabButtons isLogin={isLogin} onTabChange={setIsLogin} />
             <FormHeader isLogin={isLogin} />
 
@@ -49,12 +60,11 @@ function AuthPage() {
                 <Input
                   label="Ad Soyad"
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  error={errors.name?.message}
+                  {...register('name')}
                   icon={
                     <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   }
-                  onChange={handleInputChange}
                   placeholder="Adınız ve soyadınız"
                 />
               )}
@@ -62,24 +72,22 @@ function AuthPage() {
               <Input
                 label="E-posta"
                 type="email"
-                name="email"
-                value={formData.email}
+                error={errors.email?.message}
+                {...register('email')}
                 icon={
                   <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 }
-                onChange={handleInputChange}
                 placeholder="ornek@email.com"
               />
 
               <Input
                 label="Şifre"
+                error={errors.password?.message}
                 type={showPassword ? 'text' : 'password'}
-                name="password"
-                value={formData.password}
+                {...register('password')}
                 icon={
                   <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                 }
-                onChange={handleInputChange}
                 placeholder="••••••••"
                 button={{
                   type: 'button',
@@ -95,13 +103,12 @@ function AuthPage() {
               {!isLogin && (
                 <Input
                   label="Şifre Tekrar"
+                  error={errors.confirmPassword?.message}
                   type={showPassword ? 'text' : 'password'}
-                  name="confirmPassword"
-                  value={formData.confirmPassword || ''}
+                  {...register('confirmPassword')}
                   icon={
                     <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   }
-                  onChange={handleInputChange}
                   placeholder="••••••••"
                 />
               )}
@@ -109,11 +116,11 @@ function AuthPage() {
               {isLogin && <RememberMe />}
               {!isLogin && <TermsCheckbox />}
 
-              <SubmitButton isLogin={isLogin} onClick={handleSubmit} />
+              <SubmitButton isLogin={isLogin} type="submit" />
             </div>
 
             <SocialLogin />
-          </div>
+          </form>
         </div>
       </div>
     </div>

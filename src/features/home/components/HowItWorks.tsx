@@ -1,4 +1,4 @@
-const HowItWorks: React.FC = () => {
+const HowItWorks = () => {
   return (
     <>
       <div className="bg-white rounded-3xl shadow-xl p-12 mb-16">

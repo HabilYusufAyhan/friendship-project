@@ -1,4 +1,4 @@
-const RememberMe: React.FC = () => {
+const RememberMe = () => {
   return (
     <div className="flex items-center justify-between">
       <label className="flex items-center gap-2 cursor-pointer">

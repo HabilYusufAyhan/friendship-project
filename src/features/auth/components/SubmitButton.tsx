@@ -1,13 +1,13 @@
 interface SubmitButtonProps {
   isLogin: boolean;
-  onClick: () => void;
+  type: 'submit' | 'reset';
 }
 
-const SubmitButton: React.FC<SubmitButtonProps> = ({ isLogin, onClick }) => {
+const SubmitButton = ({ isLogin, type }: SubmitButtonProps) => {
   return (
     <button
-      onClick={onClick}
-      className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-xl transition transform hover:scale-105"
+      type={type}
+      className="w-full py-4 bg-linear-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-xl transition transform hover:scale-105"
     >
       {isLogin ? 'Giriş Yap' : 'Hesap Oluştur'}
     </button>
