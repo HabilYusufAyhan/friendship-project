@@ -1,10 +1,6 @@
 import { Users } from 'lucide-react';
 
-interface BrandingProps {
-  isLogin: boolean;
-}
-
-const Branding: React.FC<BrandingProps> = ({ isLogin }) => {
+const Branding = ({ isLogin }: { isLogin: boolean }) => {
   return (
     <div className="bg-linear-to-br from-purple-600 to-pink-600 p-12 md:w-2/5 flex flex-col justify-center text-white">
       <div className="flex items-center gap-3 mb-8">

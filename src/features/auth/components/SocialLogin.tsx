@@ -24,7 +24,7 @@ interface SocialButtonProps {
   text: string;
 }
 
-const SocialButton: React.FC<SocialButtonProps> = ({ icon, alt, text }) => {
+const SocialButton = ({ icon, alt, text }: SocialButtonProps) => {
   return (
     <button className="flex items-center justify-center gap-2 py-3 px-4 border-2 border-gray-200 rounded-xl hover:bg-gray-50 transition">
       <img src={icon} alt={alt} className="w-5 h-5" />

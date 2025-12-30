@@ -1,8 +1,4 @@
-interface FormHeaderProps {
-  isLogin: boolean;
-}
-
-const FormHeader: React.FC<FormHeaderProps> = ({ isLogin }) => {
+const FormHeader = ({ isLogin }: { isLogin: boolean }) => {
   return (
     <>
       <h3 className="text-2xl font-bold text-gray-900 mb-2">

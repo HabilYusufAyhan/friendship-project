@@ -1,15 +1,16 @@
-interface TabButtonsProps {
+const TabButtons = ({
+  isLogin,
+  setIsLogin
+}: {
   isLogin: boolean;
-  onTabChange: (isLogin: boolean) => void;
-}
-
-const TabButtons = ({ isLogin, onTabChange }: TabButtonsProps) => {
+  setIsLogin: (val: boolean) => void;
+}) => {
   return (
     <div className="flex gap-4 mb-8">
       <button
         type="button"
-        onClick={() => onTabChange(true)}
-        className={`flex-1 py-3 rounded-xl font-semibold transition ${
+        onClick={() => setIsLogin(true)}
+        className={`cursor-pointer flex-1 py-3 rounded-xl font-semibold transition ${
           isLogin
             ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg'
             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -19,8 +20,8 @@ const TabButtons = ({ isLogin, onTabChange }: TabButtonsProps) => {
       </button>
       <button
         type="button"
-        onClick={() => onTabChange(false)}
-        className={`flex-1 py-3 rounded-xl font-semibold transition ${
+        onClick={() => setIsLogin(false)}
+        className={`cursor-pointer flex-1 py-3 rounded-xl font-semibold transition ${
           !isLogin
             ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg'
             : 'bg-gray-100 text-gray-600 hover:bg-gray-200'

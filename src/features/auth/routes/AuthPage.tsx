@@ -4,11 +4,11 @@ import { useForm } from 'react-hook-form';
 
 import BackButton from '../components/BackButton';
 import Branding from '../components/Branding';
+import Button from '../components/Button';
 import FormHeader from '../components/FormHeader';
 import Input from '../components/Input';
 import RememberMe from '../components/RememberMe';
 import SocialLogin from '../components/SocialLogin';
-import SubmitButton from '../components/SubmitButton';
 import TabButtons from '../components/TabButtons';
 import TermsCheckbox from '../components/TermsCheckbox';
 import { createAuthSchema } from '../schemas/authSchema';
@@ -52,7 +52,7 @@ function AuthPage() {
 
         <div className="p-12 md:w-3/5">
           <form onSubmit={handleSubmit(submit)} className="max-w-md mx-auto">
-            <TabButtons isLogin={isLogin} onTabChange={setIsLogin} />
+            <TabButtons isLogin={isLogin} setIsLogin={setIsLogin} />
             <FormHeader isLogin={isLogin} />
 
             <div className="space-y-5">
@@ -116,7 +116,7 @@ function AuthPage() {
               {isLogin && <RememberMe />}
               {!isLogin && <TermsCheckbox />}
 
-              <SubmitButton isLogin={isLogin} type="submit" />
+              <Button isLogin={isLogin} type="submit" />
             </div>
 
             <SocialLogin />
