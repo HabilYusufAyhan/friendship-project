@@ -16,7 +16,7 @@ npm install
 👤 **Habil Yusuf Ayhan**
 
 - Website: habilyusufayhan.vercel.app
-- LinkedIn: [@Habil Yusuf Ayhan](https://linkedin.com/in/HabilYusufAyhan)
+- LinkedIn: [@Habil Yusuf Ayhan](https://www.linkedin.com/in/habil-yusuf-ayhan-92ba39227/)
 
 ## Show your support
 
