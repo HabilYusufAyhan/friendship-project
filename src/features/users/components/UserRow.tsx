@@ -98,7 +98,7 @@ export const UserRow = forwardRef<HTMLTableRowElement, Props>(({ user, style, da
     {/* İşlemler */}
     <td className="px-4 md:px-6 py-3 md:py-4 text-left">
       <div className="flex items-center justify-start md:justify-end gap-2">
-        <button className="flex items-center gap-2 px-3 md:px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:shadow-lg transition transform hover:scale-105 text-sm">
+        <button className="flex items-center gap-2 px-3 md:px-4 py-2 bg-linear-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:shadow-lg transition transform hover:scale-105 text-sm">
           <Heart className="w-4 h-4 shrink-0" />
           <span className="font-semibold">Tanış</span>
         </button>

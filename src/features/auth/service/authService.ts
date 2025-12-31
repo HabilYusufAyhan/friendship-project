@@ -3,8 +3,6 @@ import axios, { AxiosError } from 'axios';
 import type { LoginFormData, SignupFormData } from '../types';
 
 export const loginUser = async (data: LoginFormData) => {
-  console.log(data);
-
   try {
     const response = await axios.post('https://dummyjson.com/user/login', data);
     return response.data;
